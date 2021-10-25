@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica</title>
+    <script src="xlsx.full.min.js"></script>
+    <style type="text/css">
+        table.tableizer-table {
+            font-size: 14px;
+            border: 1px solid #CCC; 
+            font-family: Arial, Helvetica, sans-serif;
+        } 
+        .tableizer-table td {
+            padding: 4px;
+            margin: 3px;
+            border: 1px solid #CCC;
+        }
+        .tableizer-table th {
+            background-color: #0C3B69; 
+            color: #FFF;
+            font-weight: bold;
+        }
+        input{
+            width: 140px;
+        }
+    </style>
+</head>
+<body>
+    <table class="tableizer-table">
+        <thead>
+            <tr class="tableizer-firstrow">
+                <th>Importe del crédito</th><th>&nbsp;</th><th><input type="number" id="importe" value="20000"></th><th><button id="calcular" onclick="calcular()">calcular</button></th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr></thead><tbody>
+         <tr id="uno"><td>Plazo</td><td>&nbsp;</td><td><input type="number" id="plazo" value="12" disabled></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+         <tr><td>Tasa de interés anual</td><td>&nbsp;</td><td><input type="number" id="interes" value="12"></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td id="inicial"></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+         <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+         <tr><td>Periodo</td><td>Fecha</td><td>&nbsp;</td><td>Días</td><td>Disposición</td><td>Saldo insoluto</td><td>Comisión</td><td>Amortización</td><td>Intereses</td><td>Moratorios</td><td>IVA</td><td>Flujo</td></tr>
+         <tr><td>&nbsp;</td><td>Inicio</td><td>Fin</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+         <tr><td>0</td><td><input type="date" id="fecha" value="2021-05-15"> </td><td>&nbsp;</td><td>&nbsp;</td><td id="disposicion"></td><td id="saldo"></td><td id="comision"> </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td id="iva"></td><td id="flujo"></td></tr>
+         <tr><td>1</td><td><input type="date" id="fecha01" value="2021-05-15" disabled></td><td><input type="date" id="fecha1" value="2021-06-15"></td><td id="1">  </td><td>&nbsp;</td><td id="saldo1"> </td><td>&nbsp;</td><td id="amortizacion1"> </td><td id="intereses1"> </td><td>&nbsp;</td><td id="iva1"></td><td id="flujo1"></td></tr>
+         <tr><td>2</td><td id="fecha02">15/06/2021</td><td id="fecha2">15/07/2021</td><td id="2"> 30 </td><td>&nbsp;</td><td id="saldo2"> </td><td>&nbsp;</td><td id="amortizacion2"> </td><td id="intereses2"> </td><td>&nbsp;</td><td id="iva2"></td><td id="flujo2"></td></tr>
+         <tr><td>3</td><td id="fecha03">15/07/2021</td><td id="fecha3">15/08/2021</td><td id="3"> 31 </td><td>&nbsp;</td><td id="saldo3"> </td><td>&nbsp;</td><td id="amortizacion3"> </td><td id="intereses3"> </td><td>&nbsp;</td><td id="iva3"></td><td id="flujo3"></td></tr>
+         <tr><td>4</td><td id="fecha04">15/08/2021</td><td id="fecha4">15/09/2021</td><td id="4"> 31 </td><td>&nbsp;</td><td id="saldo4"> </td><td>&nbsp;</td><td id="amortizacion4"> </td><td id="intereses4"> </td><td>&nbsp;</td><td id="iva4"></td><td id="flujo4"></td></tr>
+         <tr><td>5</td><td id="fecha05">15/09/2021</td><td id="fecha5">15/10/2021</td><td id="5"> 30 </td><td>&nbsp;</td><td id="saldo5"> </td><td>&nbsp;</td><td id="amortizacion5"> </td><td id="intereses5"> </td><td>&nbsp;</td><td id="iva5"></td><td id="flujo5"></td></tr>
+         <tr><td>6</td><td id="fecha06">15/10/2021</td><td id="fecha6">15/11/2021</td><td id="6"> 31 </td><td>&nbsp;</td><td id="saldo6"> </td><td>&nbsp;</td><td id="amortizacion6"> </td><td id="intereses6"> </td><td>&nbsp;</td><td id="iva6"></td><td id="flujo6"></td></tr>
+         <tr><td>7</td><td id="fecha07">15/11/2021</td><td id="fecha7">15/12/2021</td><td id="7"> 30 </td><td>&nbsp;</td><td id="saldo7"> </td><td>&nbsp;</td><td id="amortizacion7"> </td><td id="intereses7"> </td><td>&nbsp;</td><td id="iva7"></td><td id="flujo7"></td></tr>
+         <tr><td>8</td><td id="fecha08">15/12/2021</td><td id="fecha8">15/01/2022</td><td id="8"> 31 </td><td>&nbsp;</td><td id="saldo8"> </td><td>&nbsp;</td><td id="amortizacion8"> </td><td id="intereses8"> </td><td>&nbsp;</td><td id="iva8"></td><td id="flujo8"></td></tr>
+         <tr><td>9</td><td id="fecha09">15/01/2022</td><td id="fecha9">15/02/2022</td><td id="9"> 31 </td><td>&nbsp;</td><td id="saldo9"> </td><td>&nbsp;</td><td id="amortizacion9"> </td><td id="intereses9"> </td><td>&nbsp;</td><td id="iva9"></td><td id="flujo9"></td></tr>
+         <tr><td>10</td><td id="fecha010">15/02/2022</td><td id="fecha10">15/03/2022</td><td id="10">28</td><td>&nbsp;</td><td id="saldo10"> </td><td>&nbsp;</td><td id="amortizacion10"> </td><td id="intereses10"> </td><td>&nbsp;</td><td id="iva10"></td><td id="flujo10"></td></tr>
+         <tr><td>11</td><td id="fecha011">15/03/2022</td><td id="fecha11">15/04/2022</td><td id="11">31</td><td>&nbsp;</td><td id="saldo11"> </td><td>&nbsp;</td><td id="amortizacion11"> </td><td id="intereses11"> </td><td>&nbsp;</td><td id="iva11"></td><td id="flujo11"></td></tr>
+         <tr><td>12</td><td id="fecha012">15/04/2022</td><td id="fecha12">15/05/2022</td><td id="12">30</td><td>&nbsp;</td><td id="saldo12"> </td><td>&nbsp;</td><td id="amortizacion12"> </td><td id="intereses12"> </td><td>&nbsp;</td><td id="iva12"></td><td id="flujo12"></td></tr>
+        </tbody></table>
+</body>
+<script src="main.js"></script>
+</html>
